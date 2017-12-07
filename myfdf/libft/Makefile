@@ -67,6 +67,7 @@ SRCS= \
 	  ft_str_is_printable.c \
 	  ft_str_is_alpha.c \
 	  ft_sqrt.c \
+	  get_next_line.c \
 
 OBJS= $(SRCS:.c=.o)
 CC= gcc -Wall -Wextra -Werror
@@ -76,7 +77,7 @@ vpath %.c ./
 all: $(NAME)
 
 %.o: %.c ./includes
-	$(CC) -c $< -I ./includes
+	$(CC) -c $<
 
 $(NAME): $(OBJS)
 	ar -rc $(NAME) $(OBJS)
