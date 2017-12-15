@@ -4,6 +4,11 @@ DIRLIB = ./libft
 LIB = ./libft/libft.a
 MLX = ./minilibx_macos
 SRCS = main.c \
+	   error.c \
+	   parser.c \
+	   utils.c \
+	   draw.c \
+	   coord.c \
 
 OBJS = $(SRCS:.c=.o)
 INC = includes
@@ -15,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C $(DIRLIB)
 	@make -C $(MLX)
-	@gcc $(FLAGS) -o $(NAME) $(OBJS) -lmlx -framework OpenGL -framework AppKit -lm $(LIB) -I $(INC)
+	@gcc $(FLAGS) -o $(NAME) $(OBJS) -lmlx -framework OpenGL -framework AppKit -lm $(LIB) -I $(INC) -g
 
 %.o: %.c
 	@gcc $(FLAGS) -c -o $@ $< -I $(INC)
@@ -28,7 +33,8 @@ clean:
 fclean: clean
 	@rm -rf $(NAME)
 
-re: fclean
-	all
+re: 
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 .PHONY: all clean fclean re
